@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta name="viewport"  content="width=device-width, initial-scale=1" charset="UTF-8" >
+        <title>home</title>
+    
+    </head> 
+<body>
+ 
+<%- include('./partials/header.ejs') -%>  
+     <section>    
+        <% products.forEach(function(productdata) { %>
+          <img src="/img/<%= productdata.image %>" alt ="" width="300px" height="200px">
+            <%= productdata.name %>
+            <%= productdata.price %>  
+            <button data-productdata="<%= JSON.stringify(productdata) %>" class="addcart">+Add</button>    
+        <% }) %>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+      <script>
+        
+        function updateCart(product)
+        {
+          axios.post('/update',product).then(res =>{
+            console.log(res);
+          })
+        }
+        const addtoCart=document.querySelectorAll(".addcart");
+        addtoCart.forEach((button) => {
+        button.addEventListener('click',(e)=>{
+            let product=JSON.parse(button.dataset.productdata)
+            updateCart(product);
+            console.log(product)
+        }) 
+        })
+        </script>
+  
+      
+
+        </body>
+      </html>

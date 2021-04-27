@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  
+<style>
+          
+  input[type=password] {
+    width: 20%;
+    padding: 9px 18px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius:20px
+  }
+  input[type=email] {
+    width: 20%;
+    padding: 9px 18px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius:20px
+  }
+ 
+  
+  input[type=submit] {
+    width: 20%;
+    padding: 9px 18px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius:20px
+  }
+  
+  .submit {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: down;
+    display: inline-block;
+    font-size: 15px;
+    width:20%;
+    border-radius:20px;
+  }
+    
+ 
+
+      </style>
+  
+    
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') -%>  
+    
+  <center>
+  <h3> Please Enter All Detail</h3>
+  <form action ="/signdata" method="POST">
+  <input type="email"  name="emails" placeholder="please enter email"><br>
+  <input type="password"  name="pass" placeholder="please mobile number"><br>
+  <input type="submit"  value="submit"><br>
+</form>
+</center>
+</body>
+</html>
