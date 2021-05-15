@@ -1,18 +1,10 @@
-const Productdata = require('../../models/productdata')
-function cartcontroller() {//factory function
+const { json } = require("express")
+function cartcontroller() {
     return {
         async index(req, res) {  
              res.render('cart')
         },
         update(req,res){
-            /*let cart={
-                items:{
-                    productid:{item:productobject,qty:0},
-                },
-                totalQty:0,
-                totalPrice:
-            }*/
-        
             if(!req.session.cart){
                 req.session.cart={
                     items:{},
@@ -21,12 +13,20 @@ function cartcontroller() {//factory function
                 }
             }
             let cart=req.session.cart
-               
-                console.log(req.body)
-                //check if item does not exist in cart
-            
-            
-            return res.json({product:'all ok'})
+            if(!cart.items[req.body._id]) {
+                cart.items[req.body._id] = {
+                    item: req.body,
+                    qty: 1
+                }
+                cart.totalQty = cart.totalQty + 1
+                cart.totalPrice = cart.totalPrice + req.body.price
+            } else {
+                cart.items[req.body._id].qty = cart.items[req.body._id].qty + 1
+                cart.totalQty = cart.totalQty + 1
+                cart.totalPrice =  cart.totalPrice + req.body.price
+            }
+            return res.json({ totalQty: req.session.cart.totalQty })
+
         }
     } 
 }

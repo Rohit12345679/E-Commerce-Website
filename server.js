@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, "public/css/style")));
 app.set('views',path.join(__dirname,"/resources/views"));
 app.set('view engine','ejs');
-require('./routes/web')(app);
+
 const PORT=process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -43,26 +43,12 @@ app.use(session({
     saveUninitialized:true,
     cookie:{maxAge:1000*60*60*24}
 }))
-
-
-
+app.use((req, res, next) => {
+    res.locals.session = req.session
+    next()
+})
 app.use(flash());
-app.get('/', (req,res) =>{
-    res.render('home');
-});
-
-app.get('/registration', (req,res) =>{
-    res.render('registration');
-});
-
-
-
-
-app.get('/login', (req,res) =>{
-    res.render('login');
-});
-
-
+require('./routes/web')(app);
 app.listen(PORT,()=>{  
     console.log(`listening on port ${PORT}`);
 })

@@ -4,8 +4,9 @@ const authcontroller=require('../app/http/controllers/authcontroller');
 function initRoutes(app) {
     app.get('/', homecon().index)
     app.post('/update', cartcontroller().update)
-    //app.get('/registration', authcontroller().registration)
+    app.get('/registration', authcontroller().registration)
     app.post('/registration', authcontroller().postregistration)
+    app.post('/update-cart',cartcontroller().update)  
         
 }
 module.exports=initRoutes;  
