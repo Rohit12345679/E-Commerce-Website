@@ -53,7 +53,10 @@
     
   <center>
   <h3> Please Enter All Detail</h3>
-  <form action ="/signdata" method="POST">
+  <% if(messages.error) { %>
+    <%= messages.error %>
+    <% } %>
+  <form action ="/login" method="POST">
   <input type="email"  name="emails" placeholder="please enter email"><br>
   <input type="password"  name="pass" placeholder="please mobile number"><br>
   <input type="submit"  value="submit"><br>

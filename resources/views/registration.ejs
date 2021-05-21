@@ -55,11 +55,16 @@
   <body>
     <%- include('./partials/header.ejs') -%>  
 <center>
+  
   <h3> Please Enter All Detail</h3>
+  <% if(messages.error) { %>
+    <%= messages.error %>
+    <% } %>
+  
   <form action ="/registration" method="POST">
-  <input type="text"  name="name" placeholder="please enter first name"><br>
-  <input type="email"  name="email" placeholder="plea   se enter last name"><br>
-  <input type="password"  name="password" placeholder="please mobile number"><br>
+  <input type="text"  name="name" placeholder="please enter name"><br>
+  <input type="email"  name="email" placeholder="please enter emailid"><br>
+  <input type="password"  name="password" placeholder="please enter password"><br>
   <input type="submit"  value="submit"><br>
 </form>
 </center>

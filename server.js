@@ -5,6 +5,7 @@ const path=require('path')
 const mongoose=require('mongoose')
 var cookieParser = require('cookie-parser')
 const session=require('express-session')
+const LocalStrategy = require('passport-local').Strategy 
 const flash=require('express-flash')
 const MongoDbStore = require('connect-mongo')(session)
 const passport=require('passport');
@@ -43,11 +44,17 @@ app.use(session({
     saveUninitialized:true,
     cookie:{maxAge:1000*60*60*24}
 }))
+
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 app.use((req, res, next) => {
     res.locals.session = req.session
+    res.locals.user = req.user
     next()
 })
-app.use(flash());
 require('./routes/web')(app);
 app.listen(PORT,()=>{  
     console.log(`listening on port ${PORT}`);
