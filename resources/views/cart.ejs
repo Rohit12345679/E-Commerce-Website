@@ -1,0 +1,28 @@
+<header>
+    <%- include('./partials/header.ejs') -%> 
+    </header>
+    
+  <section>
+  <% for(let product of Object.values(session.cart.items)){ %>
+    <div class="container">  
+    <img src="/img/<%= product.item.image %>" alt ="" height="50px" width="200px">
+    <h1><%= product.item.name %></h1>
+    <p class="price">$<%= product.item.price %></p>
+  </div>
+    <% } %>
+  </section><br>
+  <section><div class="total">
+    <p>Total Amout:<%= session.cart.totalPrice %></p>
+     <br>
+     <% if(user) {%>
+    <form action="/order" method="POST">  
+    <input type="phone"name="phone" placeholder="please enter your phone number"><br>                     
+    <input type="address" name="address" placeholder="please enter your Address"><br>
+    <input type="submit" value="OrderNow">
+    <%} else{ %>
+      <a href="/login" >Please login</a>
+    </form>
+      <% } %>
+  </div>
+</section>
+    

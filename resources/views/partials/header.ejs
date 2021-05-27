@@ -3,7 +3,7 @@
   
     <tr>
     <th width="50%"><font color="white" size="4"> E-commerce</font></th>
-    <th width="10%"><i class="fa fa-shopping-cart" style="font-size:23px;color:white;background-color:green"><span id ="counter"><%= session.cart ? session.cart.totalQty : '' %></span></i></th>
+    <th width="10%"><a href="cart"><i class="fa fa-shopping-cart" style="font-size:23px;color:white;background-color:green"><span id ="counter"><%= session.cart ? session.cart.totalQty : '' %></a></span></i></th>
     <% if(user) { %>
         <th width="10%"><form id="logout" action="/logout" method="POST">
             <a onclick="document.getElementById('logout').submit()" href="#"target="_self"> <font color="white" size="4">Logout 
