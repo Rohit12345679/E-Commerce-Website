@@ -1,8 +1,45 @@
+<style>
+  .product{
+        max-width: 100%;
+         max-height:100%;
+         background: #fff;
+         padding: 30px;
+         border-radius: 5px;
+         box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  }
+  .container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 80px;
+  grid-row-gap:50px ;
+  }
+  .detail{
+    text-align:center ;
+  } 
+  input[type=text] {
+    width: 250px;
+    padding: 9px 18px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  input[type=submit] {
+    width: 250px;
+    padding: 9px 18px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  
+.total{
+text-align:right;
+}  
+  
+</style>
 <header>
     <%- include('./partials/header.ejs') -%> 
     </header>
     
   <section>
+    <div class="product">
   <% for(let product of Object.values(session.cart.items)){ %>
     <div class="container">  
     <img src="/img/<%= product.item.image %>" alt ="" height="50px" width="200px">
@@ -11,18 +48,22 @@
   </div>
     <% } %>
   </section><br>
-  <section><div class="total">
+  <section>
+    <div class="detail"> 
     <p>Total Amout:<%= session.cart.totalPrice %></p>
      <br>
      <% if(user) {%>
     <form action="/order" method="POST">  
-    <input type="phone"name="phone" placeholder="please enter your phone number"><br>                     
-    <input type="address" name="address" placeholder="please enter your Address"><br>
+    <input type="text"name="phone" placeholder="please enter your phone number"><br>                     
+    <input type="text" name="address" placeholder="please enter your Address"><br>
     <input type="submit" value="OrderNow">
     <%} else{ %>
       <a href="/login" >Please login</a>
     </form>
+  </div>
+
       <% } %>
   </div>
+</div>
 </section>
     
