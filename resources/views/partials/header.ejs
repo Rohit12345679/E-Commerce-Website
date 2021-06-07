@@ -1,18 +1,17 @@
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
 
 
 <section>
-  <head><style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-  </style>
-  </head>
-  
 <table border="0"width="100%" bgcolor="black" height="60px" >
   
     <tr>
     <th width="50%"><font color="white" size="4"> E-commerce</font></th>
     <th width="10%"><a href="home" target="_self"> <font color="white" size="4"> Home </font></th>
-    <th width="10%"><a href="cart"><i class="fa fa-shopping-cart" style="font-size:23px;color:white;background-color:green"><span id ="counter"><%= session.cart ? session.cart.totalQty : '' %></a></span></i></th>
+    <th width="10%"><a href="cart"><i class="fa fa-shopping-cart" style="font-size:23px;color:white;"><span id ="counter"><%= session.cart ? session.cart.totalQty : '' %></a></span></i></th>
     
     <% if(user) { %>
         <th width="10%"><form id="logout" action="/logout" method="POST">
@@ -21,8 +20,8 @@
             </font></th>
         
           <% } else { %>
-            <th width="10%"><a href="registration"target="_self" > <font color="white" size="4"> register</font></th>
-            <th width="10%"><a href="login" target="_self"> <font color="white" size="4"> login </font></th>
+            <th width="10%"><a href="registration"target="_self" > <font color="white" size="4"> Register</font></th>
+            <th width="10%"><a href="login" target="_self"> <font color="white" size="4"> Login </font></th>
           <% } %>
           
 </tr>

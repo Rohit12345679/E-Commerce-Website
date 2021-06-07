@@ -10,7 +10,7 @@ function authcontroller()
     postLogin(req,res,next){
         const { email, password }   = req.body
         if(!email || !password) {
-           req.flash('error', 'All fields are required')
+           req.flash('error', 'Please enter emaid Id and Password')
             return res.redirect('/login')
         }
         passport.authenticate('local', (err, user, info) => { 
@@ -41,11 +41,18 @@ function authcontroller()
     {
         try{
         const {name,email,password}=req.body;
-        if(!name || !email|| !password)
+        if(!name)
         {
             req.flash('error', 'All fields are required')
             req.flash('name', name)
+            return res.redirect('/registration')
+
+         }
+         if(!email ||  !password)
+        {
+            req.flash('error', 'Please Enter email id and password')
             req.flash('email', email)
+            req.flash('password', password)
             return res.redirect('/registration')
 
          }

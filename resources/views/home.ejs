@@ -4,18 +4,59 @@
     <meta name="viewport"  content="width=device-width, initial-scale=1" charset="UTF-8" >
         <title>home</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head> 
+ <style>
+            .container{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: 50px;
+            padding-left: 20px;
+          
+           }
+           .card{
+             height: 330px;
+             width: 280px;
+
+           }
+        .name{
+          padding-top: 15px;
+          padding-left:60px ;
+        }
+        .price{
+        padding-top: 3px;
+        padding-left: 60px;
+        text-transform: bold;
+        
+        }
+        .addtocart{
+          height: 30px;
+          width: 90px;
+          background-color:#FFA500;
+
+        }
+        .btn{
+          padding-top: 5px;
+          padding-left: 45px;
+        }
+      
+        
+ </style>
+      </head> 
 <body>
  
 <%- include('./partials/header.ejs') -%>  
-     <section>    
+     <section> 
+       <div class="container"> 
+         
       <% products.forEach(function(productdata) { %>
-        <img src="/img/<%= productdata.image %>" alt ="" height="50px" width="70px">
-             <%= productdata.name %>
-             <%= productdata.price %>
-              <button data-productdata="<%= JSON.stringify(productdata) %>"class="addtocart">+Add</button>       
-              
+        <div class="card"> 
+        <img src="/img/<%= productdata.image %>" alt ="" height="120px" width="200px">
+        <h2 class="name"> <%= productdata.name %></h2>
+        <p class="price">₹ <%= productdata.price %></p>
+        <p class="btn"> <button data-productdata="<%= JSON.stringify(productdata) %>"class="addtocart">+Add</button>       
+        </p> 
+        </div>   
     <% }) %>
+  </div> 
         </section> 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
       <script>

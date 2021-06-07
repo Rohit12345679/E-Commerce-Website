@@ -34,23 +34,26 @@ text-align:right;
 }  
   
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 <header>
     <%- include('./partials/header.ejs') -%> 
     </header>
     
   <section>
     <div class="product">
-  <% for(let product of Object.values(session.cart.items)){ %>
-    <div class="container">  
-    <img src="/img/<%= product.item.image %>" alt ="" height="50px" width="200px">
+      <div class="container"> 
+  
+  <% for(let product of Object.values(session.cart.items)){ %>  
+    <img src="/img/<%= product.item.image %>" alt ="" height="150px" width="200px">
     <h1><%= product.item.name %></h1>
-    <p class="price">$<%= product.item.price %></p>
-  </div>
+    <p class="price">₹ <%= product.item.price %></p>
     <% } %>
+    </div>
   </section><br>
   <section>
     <div class="detail"> 
-    <p>Total Amout:<%= session.cart.totalPrice %></p>
+    <p>Total Amout: ₹<%= session.cart.totalPrice %></p>
      <br>
      <% if(user) {%>
     <form action="/order" method="POST">  
